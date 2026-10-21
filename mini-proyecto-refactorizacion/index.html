@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tienda Aula | Laboratorio de refactorización</title>
+  </head>
+  <body>
+    <header class="container">
+      <span class="badge">MINI PROYECTO · CÓDIGO INICIAL</span>
+      <h1>Tienda Aula</h1>
+      <p>Un sistema que funciona. Un diseño que tus decisiones pueden mejorar.</p>
+    </header>
+    <main class="container">
+      <aside class="notice">
+        <strong>Antes de cambiar código: entendé y probá.</strong>
+        Esta versión conserva intencionalmente los problemas del material.
+        No envía emails reales. Usá únicamente datos ficticios.
+      </aside>
+      <div class="layout">
+        <section class="card" aria-labelledby="catalogo-titulo">
+          <h2 id="catalogo-titulo">1. Catálogo</h2>
+          <p>Agregá productos al pedido. Podés repetir un producto.</p>
+          <ul id="catalogo" class="list"></ul>
+          <details>
+            <summary>Registrar un producto</summary>
+            <form id="producto-form">
+              <label for="producto-nombre">Nombre</label>
+              <input id="producto-nombre" required maxlength="80" />
+              <label for="producto-precio">Precio ($)</label>
+              <input id="producto-precio" type="number" min="0.01" step="0.01" required />
+              <button type="submit">Registrar producto</button>
+            </form>
+          </details>
+          <p class="muted">El catálogo se mantiene solo mientras esta página está abierta.</p>
+        </section>
+        <section class="card" aria-labelledby="pedido-titulo">
+          <h2 id="pedido-titulo">2. Nuevo pedido</h2>
+          <ul id="carrito" class="list" aria-label="Productos del pedido"></ul>
+          <p class="subtotal">Subtotal: <strong id="subtotal">$ 0</strong></p>
+          <form id="pedido-form">
+            <label for="cliente-nombre">Nombre del cliente</label>
+            <input id="cliente-nombre" required maxlength="80" autocomplete="off" />
+            <label for="cliente-email">Email ficticio</label>
+            <input id="cliente-email" type="email" required placeholder="alumno@example.com" autocomplete="off" />
+            <div class="fields">
+              <div>
+                <label for="tipo-cliente">Tipo de cliente</label>
+                <select id="tipo-cliente">
+                  <option value="normal">Normal · sin descuento</option>
+                  <option value="premium">Premium · 10%</option>
+                  <option value="vip">VIP · 20%</option>
+                </select>
+              </div>
+              <div>
+                <label for="tipo-envio">Envío</label>
+                <select id="tipo-envio">
+                  <option value="normal">Normal · $ 1.000</option>
+                  <option value="express">Express · $ 2.000</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit">Confirmar pedido</button>
+          </form>
+          <p id="estado" role="status" aria-live="polite"></p>
+        </section>
+      </div>
+      <section class="card history" aria-labelledby="historial-titulo">
+        <h2 id="historial-titulo">3. Pedidos de esta sesión</h2>
+        <p>Se guardan en localStorage con la clave <code>pedidos</code>.
+          El servicio inicial no recupera el historial al recargar.</p>
+        <ol id="historial" class="list">
+          <li class="muted">Todavía no registraste pedidos.</li>
+        </ol>
+      </section>
+    </main>
+    <footer class="container muted">Entender → Testear → Refactorizar → Verificar → Commit</footer>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+:root {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  color: #173342;
+  background: #f1f5f6;
+  line-height: 1.55;
+  font-synthesis: none;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+.container { width: min(1100px, 92%); margin: 0 auto; }
+header { padding: 48px 0 24px; }
+h1 { margin: 12px 0 4px; font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.04em; }
+h2 { margin-top: 0; font-size: 1.3rem; }
+p { margin-top: 8px; }
+.badge { color: #086b65; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em; }
+.notice { padding: 18px 22px; background: #e1eeeb; border-left: 4px solid #087c71; border-radius: 6px; margin-bottom: 24px; }
+.notice strong { display: block; }
+.layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 24px; }
+.card { padding: 28px; border: 1px solid #d6e1e5; border-radius: 14px; background: white; }
+.list { list-style: none; margin: 16px 0; padding: 0; }
+.list li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #e4ebed; overflow-wrap: anywhere; }
+label { display: block; margin: 14px 0 5px; font-size: 0.9rem; font-weight: 600; }
+input, select { width: 100%; padding: 11px; color: inherit; background: white; border: 1px solid #a3b7c1; border-radius: 7px; font: inherit; min-width: 0; }
+button { padding: 11px 16px; border: 1px solid transparent; border-radius: 7px; background: #08776d; color: white; cursor: pointer; font: inherit; font-weight: 600; }
+button:hover { background: #065b54; }
+button.secondary { color: #086b65; background: #e8f3f0; padding: 7px 12px; }
+button.secondary:hover { background: #d0e8e2; }
+button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid #237eac; outline-offset: 3px; }
+form > button { margin-top: 20px; width: 100%; }
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.subtotal { text-align: right; font-size: 1.1rem; }
+.muted { color: #536974; font-size: 0.9rem; }
+details { margin-top: 24px; }
+summary { cursor: pointer; font-weight: 600; }
+.history { margin-top: 24px; }
+.error { color: #a12626; }
+.success { color: #086252; }
+footer { padding: 28px 0 40px; }
+@media (max-width: 760px) {
+  .layout, .fields { grid-template-columns: 1fr; }
+  .card { padding: 20px; }
+  header { padding-top: 28px; }
+}
