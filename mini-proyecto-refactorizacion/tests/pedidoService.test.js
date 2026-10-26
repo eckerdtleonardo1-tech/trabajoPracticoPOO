@@ -2,6 +2,14 @@ import { describe, expect, test } from "@jest/globals";
 import { Producto } from "../src/models/Producto.js";
 import { Pedido } from "../src/models/Pedido.js";
 import { PedidoService } from "../src/services/PedidoService.js";
+import { RepositorioLocalStorage } from "../src/services/RepositorioLocalStorage.js";
+import { NotificadorConsola } from "../src/services/NotificadorConsola.js";
+
+// Se usan las implementaciones reales: los tests no verifican ni simulan
+// la persistencia ni la notificacion.
+function crearService() {
+  return new PedidoService(new RepositorioLocalStorage(), new NotificadorConsola());
+}
 
 describe("PedidoService: caracterizacion antes de refactorizar", () => {
   test("cliente normal con envio normal paga subtotal mas 1000", () => {
@@ -9,7 +17,7 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
       { nombre: "Ana", email: "ana@example.com" },
       [new Producto(1, "Cuaderno", 3000), new Producto(2, "Lapicera", 1000)],
     );
-    const service = new PedidoService();
+    const service = crearService();
 
     const total = service.registrar(pedido, "normal", "normal");
 
@@ -21,7 +29,7 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
       { nombre: "Ana", email: "ana@example.com" },
       [new Producto(1, "Cuaderno", 3000), new Producto(2, "Lapicera", 1000)],
     );
-    const service = new PedidoService();
+    const service = crearService();
 
     const total = service.registrar(pedido, "premium", "normal");
 
@@ -34,7 +42,7 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
       { nombre: "Ana", email: "ana@example.com" },
       [new Producto(1, "Cuaderno", 3000), new Producto(2, "Lapicera", 1000)],
     );
-    const service = new PedidoService();
+    const service = crearService();
 
     const total = service.registrar(pedido, "vip", "normal");
 
@@ -47,7 +55,7 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
       { nombre: "Ana", email: "ana@example.com" },
       [new Producto(1, "Cuaderno", 3000), new Producto(2, "Lapicera", 1000)],
     );
-    const service = new PedidoService();
+    const service = crearService();
 
     const total = service.registrar(pedido, "normal", "express");
 
@@ -59,7 +67,7 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
       { nombre: "Ana", email: "ana@example.com" },
       [new Producto(1, "Cuaderno", 3000), new Producto(2, "Lapicera", 1000)],
     );
-    const service = new PedidoService();
+    const service = crearService();
 
     const total = service.registrar(pedido, "premium", "express");
 
@@ -72,7 +80,7 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
       { nombre: "Ana", email: "ana@example.com" },
       [new Producto(1, "Cuaderno", 3000), new Producto(2, "Lapicera", 1000)],
     );
-    const service = new PedidoService();
+    const service = crearService();
 
     const total = service.registrar(pedido, "vip", "express");
 
@@ -85,7 +93,7 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
       { nombre: "Ana", email: "ana@example.com" },
       [new Producto(1, "Regla", 999.99)],
     );
-    const service = new PedidoService();
+    const service = crearService();
 
     const total = service.registrar(pedido, "premium", "normal");
 
@@ -98,7 +106,7 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
       { nombre: "Ana", email: "ana@example.com" },
       [new Producto(1, "Cuaderno", 3000), new Producto(2, "Lapicera", 1000)],
     );
-    const service = new PedidoService();
+    const service = crearService();
 
     service.registrar(pedido, "normal", "normal");
 
@@ -116,7 +124,7 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
       { nombre: "Juan", email: "juan@example.com" },
       [new Producto(2, "Lapicera", 1000)],
     );
-    const service = new PedidoService();
+    const service = crearService();
 
     service.registrar(pedido1, "normal", "normal");
     service.registrar(pedido2, "vip", "express");
@@ -134,7 +142,7 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
       { nombre: "Ana", email: "ana@example.com" },
       [new Producto(1, "Mochila", 2500)],
     );
-    const service = new PedidoService();
+    const service = crearService();
 
     const total = service.registrar(pedido, "normal", "normal");
 
@@ -147,7 +155,7 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
       { nombre: "Ana", email: "ana@example.com" },
       [cuaderno, cuaderno],
     );
-    const service = new PedidoService();
+    const service = crearService();
 
     const total = service.registrar(pedido, "normal", "normal");
 

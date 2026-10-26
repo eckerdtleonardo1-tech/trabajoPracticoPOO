@@ -1,5 +1,7 @@
 export class PedidoService {
-  constructor() {
+  constructor(repositorio, notificador) {
+    this.repositorio = repositorio;
+    this.notificador = notificador;
     this.pedidos = [];
   }
 
@@ -31,8 +33,8 @@ export class PedidoService {
     total += costoEnvio;
     this.pedidos.push({ pedido, total });
 
-    localStorage.setItem("pedidos", JSON.stringify(this.pedidos));
-    console.log(`Email enviado a ${pedido.cliente.email}`);
+    this.repositorio.guardar(this.pedidos);
+    this.notificador.notificar(pedido);
 
     return total;
   }

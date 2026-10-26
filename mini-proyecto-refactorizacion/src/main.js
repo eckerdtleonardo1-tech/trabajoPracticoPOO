@@ -2,8 +2,10 @@ import "./styles.css";
 import { Producto } from "./models/Producto.js";
 import { Pedido } from "./models/Pedido.js";
 import { PedidoService } from "./services/PedidoService.js";
+import { RepositorioLocalStorage } from "./services/RepositorioLocalStorage.js";
+import { NotificadorConsola } from "./services/NotificadorConsola.js";
 
-const service = new PedidoService();
+const service = new PedidoService(new RepositorioLocalStorage(), new NotificadorConsola());
 const catalogo = [
   new Producto(1, "Cuaderno", 3000),
   new Producto(2, "Lapicera", 1000),
