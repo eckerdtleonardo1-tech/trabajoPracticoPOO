@@ -4,8 +4,19 @@ import { Pedido } from "./models/Pedido.js";
 import { PedidoService } from "./services/PedidoService.js";
 import { RepositorioLocalStorage } from "./services/RepositorioLocalStorage.js";
 import { NotificadorConsola } from "./services/NotificadorConsola.js";
+import { DescuentoNormal, DescuentoPremium, DescuentoVip } from "./services/descuentos.js";
+import { EnvioNormal, EnvioExpress } from "./services/envios.js";
 
 const service = new PedidoService(new RepositorioLocalStorage(), new NotificadorConsola());
+const descuentos = {
+  normal: new DescuentoNormal(),
+  premium: new DescuentoPremium(),
+  vip: new DescuentoVip(),
+};
+const envios = {
+  normal: new EnvioNormal(),
+  express: new EnvioExpress(),
+};
 const catalogo = [
   new Producto(1, "Cuaderno", 3000),
   new Producto(2, "Lapicera", 1000),
@@ -112,7 +123,7 @@ pedidoForm.addEventListener("submit", (event) => {
   const tipoEnvio = document.querySelector("#tipo-envio").value;
   let total;
   try {
-    total = service.registrar(pedido, tipoCliente, tipoEnvio);
+    total = service.registrar(pedido, descuentos[tipoCliente], envios[tipoEnvio]);
   } catch (error) {
     informarError(
       "No se completó el registro. Revisá la consola y localStorage antes de reintentar: el servicio inicial puede haber modificado su memoria.",

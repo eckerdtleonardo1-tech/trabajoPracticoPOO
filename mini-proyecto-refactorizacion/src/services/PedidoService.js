@@ -5,32 +5,17 @@ export class PedidoService {
     this.pedidos = [];
   }
 
-  registrar(pedido, tipoCliente, tipoEnvio) {
+  registrar(pedido, descuento, envio) {
     let total = 0;
 
     for (const producto of pedido.productos) {
       total += producto.precio;
     }
 
-    if (tipoCliente === "premium") {
-      total *= 0.9;
-    }
+    // El descuento se aplica solo a los productos; el envio se suma despues
+    total = descuento.aplicar(total);
+    total += envio.costo();
 
-    if (tipoCliente === "vip") {
-      total *= 0.8;
-    }
-
-    let costoEnvio = 0;
-
-    if (tipoEnvio === "normal") {
-      costoEnvio = 1000;
-    }
-
-    if (tipoEnvio === "express") {
-      costoEnvio = 2000;
-    }
-
-    total += costoEnvio;
     this.pedidos.push({ pedido, total });
 
     this.repositorio.guardar(this.pedidos);
