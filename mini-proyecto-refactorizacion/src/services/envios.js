@@ -12,3 +12,9 @@ export class EnvioExpress {
     return 2000;
   }
 }
+
+export class EnvioRetiroLocal {
+  costo() {
+    return 0;
+  }
+}

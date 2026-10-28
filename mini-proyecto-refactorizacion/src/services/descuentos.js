@@ -18,3 +18,9 @@ export class DescuentoVip {
     return subtotal * 0.8;
   }
 }
+
+export class DescuentoMayorista {
+  aplicar(subtotal) {
+    return subtotal * 0.75;
+  }
+}

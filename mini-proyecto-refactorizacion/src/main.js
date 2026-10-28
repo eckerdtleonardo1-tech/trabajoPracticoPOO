@@ -4,18 +4,25 @@ import { Pedido } from "./models/Pedido.js";
 import { PedidoService } from "./services/PedidoService.js";
 import { RepositorioLocalStorage } from "./services/RepositorioLocalStorage.js";
 import { NotificadorConsola } from "./services/NotificadorConsola.js";
-import { DescuentoNormal, DescuentoPremium, DescuentoVip } from "./services/descuentos.js";
-import { EnvioNormal, EnvioExpress } from "./services/envios.js";
+import {
+  DescuentoNormal,
+  DescuentoPremium,
+  DescuentoVip,
+  DescuentoMayorista,
+} from "./services/descuentos.js";
+import { EnvioNormal, EnvioExpress, EnvioRetiroLocal } from "./services/envios.js";
 
 const service = new PedidoService(new RepositorioLocalStorage(), new NotificadorConsola());
 const descuentos = {
   normal: new DescuentoNormal(),
   premium: new DescuentoPremium(),
   vip: new DescuentoVip(),
+  mayorista: new DescuentoMayorista(),
 };
 const envios = {
   normal: new EnvioNormal(),
   express: new EnvioExpress(),
+  retiro: new EnvioRetiroLocal(),
 };
 const catalogo = [
   new Producto(1, "Cuaderno", 3000),
